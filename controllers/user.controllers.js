@@ -14,19 +14,20 @@ cloudinary.config({
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587, // Use 587 for TLS
+  port: 587,
   secure: false, // true for 465, false for other ports
   requireTLS: true,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
-  // Important for production
+  debug: true, // Add debug
+  logger: true, // Add logger
   tls: {
-    rejectUnauthorized: false, // This might help with SSL issues
-    ciphers: "SSLv3",
+    rejectUnauthorized: false,
   },
 });
+
 
 transporter.verify((error, success) => {
   if (error) {

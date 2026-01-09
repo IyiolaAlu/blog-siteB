@@ -16,13 +16,14 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587, // Use 587 for TLS
   secure: false, // true for 465, false for other ports
+  requireTLS: true,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
-  connectionTimeout: 30000, // 30 seconds timeout
-  // Add TLS options
+  // Important for production
   tls: {
+    rejectUnauthorized: false, // This might help with SSL issues
     ciphers: "SSLv3",
   },
 });

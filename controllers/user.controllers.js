@@ -13,16 +13,12 @@ cloudinary.config({
 });
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  service: "gmail",
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
-  connectionTimeout: 60000,
 });
-
 
 transporter.verify((error, success) => {
   if (error) {
